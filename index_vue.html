@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue test</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <div class="product">
+            <div class="product-image">
+                <img id="photo" v-bind:src="image" v-bind:alt="altText">
+            </div>
+            <div class="product-info">
+                <h1>{{product.name}}</h1>
+                <p>{{description}}</p>
+            </div>
+            <div class="other-products">
+                <a v-bind:href="link">More products like this</a>
+            </div>
+            <div id="evaluation">
+                <p id="label">Rate the product </p>
+                <form action="#">
+                    <select v-model="selected" v-bind:class="classObject" v-on:focus="onFocus" v-on:blur="offFocus">
+                        <option disabled>-Rate-</option>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                    </select>
+                </form>
+                <p id="rating">Rating is: {{selected}}</p>
+            </div>
+            <div class="likes">
+                <img v-bind:src="like" alt="Like" id="click-like" v-on:click="counter">
+                <p id="sum-likes">{{sumLikes}}</p>
+            </div>
+            <p id="week-prod" v-if="weekProduct">Product of the week !!!</p>
+            <p id="month-prod" v-else-if="monthProduct">Product of the month !!!</p>
+            <div class="price">{{product.price}} $</div>
+            <img id="buy-but-big" v-bind:src="buyButton" alt="Buy" v-on:click="buy">
+            <div class="add-offers">
+                <p> Together with the product you can buy the next goods/servises with the special prices:</p>
+                <table class="tab-add-offers">
+                    <tr v-for="value in addOffers">
+                        <td class="cell-1">{{value.offer}}</td>
+                        <td class="cell-2">{{value.price}}$</td>
+                        <td class="cell-2">
+                            <button class="buy-but" v-on:click="addBuy(value)">Buy</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h2 id="main-features">Main features</h2>
+            <ul id="list">
+                <li v-for="value in mainFeatures">
+                    {{value}}
+                </li>
+            </ul>
+            <div class="chip-and-memory"
+                v-bind:class="classObjectChip"
+                v-on:mouseover="onMouseoverChip"
+                v-on:mouseout="onMouseoutChip">
+                <h4 class="center">Chip and memory</h4>
+                <ul>
+                    <other-features v-for="value in chipAndMemory" v-bind:item="value"></other-features>
+                </ul>
+            </div>
+            <div class="interface"
+                v-bind:class="classObjectInterface"
+                v-on:mouseover="onMouseoverInterface"
+                v-on:mouseout="onMouseoutInterface">
+                <h4 class="center">Interface</h4>
+                <ul>
+                    <other-features v-for="value in interface" v-bind:item="value"></other-features>
+                </ul>
+            </div>
+            <div class="physical-props"
+                v-bind:class="classObjectPhysicalPr"
+                v-on:mouseover="onMouseoverPhysicalPr"
+                v-on:mouseout="onMouseoutPhysicalPr">
+                <h4 class="center">Physical properties</h4>
+                <ul>
+                    <other-features v-for="value in physicalProps" v-bind:item="value"></other-features>
+                </ul>
+            </div>
+        </div>
+        <div class="basket">
+            <div id="total-sum">{{total}} $</div>
+            <img v-bind:src="basketImg" alt="Basket">
+        </div>
+        <div class="promo">
+            <p>
+                Make an order & click 
+                <img id="right-button" v-bind:src="rightButton" alt="right-button" v-on:contextmenu.prevent="promo">
+                 to have a promocode for purchases in the stores of our partners.
+            </p>
+            <p id="code" v-if="visible">
+                Code: {{promocode}}. &nbsp &nbsp Discount: {{discount}} %
+            </p>
+        </div>
+        <div class="reviews">
+            <h3 id="reviews-label">Reviews:</h3>
+            <form>
+                <textarea id="review" placeholder="Enter your review"
+                    v-model="currentReview"
+                    v-bind:class="classObjectReview"
+                    v-on:focus="onFocusReview"
+                    v-on:blur="offFocusReview"
+                    v-on:keyup="activeBut">
+                </textarea>
+                <button id="send-but"
+                    v-bind:disabled="buttonState"
+                    v-on:click.prevent="send">
+                        Send
+                </button>
+            </form>
+            <ul id="reviews-list">
+                <li v-for="value in reviews">
+                    {{value | capitalize}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js_vue.js"></script>
+</body>
+</html>
