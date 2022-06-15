@@ -8,7 +8,7 @@ let app = new Vue({
 	data: {
 		product: {name: "ASUS GeForce RTX2060", price: 320},
 		description: "6GB 192Bit 1710/14000Mhz",
-		image: "E:/Саша/Фронт-енд/Vue/v_card.webp",
+		image: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/v_card.webp",
 		altText: "V-card RTX2060",
 		buyButton: "E:/Саша/Фронт-енд/Vue/buy_button_big.jpg",
 		basket: [],
