@@ -122,14 +122,14 @@ let app = new Vue({
 		},
 		counter: function (event) {
 			if (event) {
-				this.sumLikes = this.sumLikes + 1;
+				this.sumLikes += 1;
 			}
-			if (this.sumLikes >= 10 && this.sumLikes < 20) {
+			if (this.sumLikes >= 5 && this.sumLikes < 10) {
 				this.weekProduct = true;
 			} else {
 				this.weekProduct = false;
 			}
-			if (this.sumLikes >= 20) {
+			if (this.sumLikes >= 10) {
 				this.monthProduct = true;
 			}
 		},
