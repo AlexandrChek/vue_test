@@ -10,12 +10,12 @@ let app = new Vue({
 		description: "6GB 192Bit 1710/14000Mhz",
 		image: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/v_card.webp",
 		altText: "V-card RTX2060",
-		buyButton: "E:/Саша/Фронт-енд/Vue/buy_button_big.jpg",
+		buyButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/buy_button_big.jpg",
 		basket: [],
 		total: 0,
 		link: "https://www.asus.com/ru/Motherboards-Components/Graphics-Cards/Dual/DUAL-RTX2070-8G-EVO/",
 		selected: "",
-		like: "E:/Саша/Фронт-енд/Vue/like.jpg",
+		like: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/like.jpg",
 		sumLikes: 0,
 		weekProduct: false,
 		monthProduct: false,
@@ -24,7 +24,7 @@ let app = new Vue({
 			{offer: "Cooler ASUS STRIX XF120", price: 25},
 			{offer: "Additional warranty for 2 years", price: 27}
 		],
-		basketImg: "E:/Саша/Фронт-енд/Vue/basket.png",
+		basketImg: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/basket.png",
 		classObject: {
 			blue: false
 		},
@@ -63,7 +63,7 @@ let app = new Vue({
 			{feature: "Dimensions: 242 x 130 x 53 mm"},
 			{feature:"Number of fans: 2"}
 		],
-		rightButton: "E:/Саша/Фронт-енд/Vue/right_button.webp",
+		rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
 		visible: false,
 		promocode: "",
 		reviews: [],
