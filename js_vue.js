@@ -1,7 +1,54 @@
-Vue.component('other-features', {
+Vue.component('features-list', {
 	props: ['item'],
-	template: '<li class="size-14">{{item.feature}}</li>'
-})
+	template: `<ul>
+					<li class="size-14">{{item.feature}}</li>
+				</ul>`
+});
+
+Vue.component('other-features', {
+	template: `<div class="other-features">
+					<div class="features">
+						<h4 class="center">Chip and memory</h4>
+						<features-list v-for="value in chipAndMemory"
+							v-bind:item="value">
+						</features-list>
+					</div>
+					<div class="features">
+                		<h4 class="center">Interface</h4>
+                    	<features-list v-for="value in interface"
+							v-bind:item="value">
+						</features-list>
+            		</div>
+					<div class="features">
+                		<h4 class="center">Physical properties</h4>
+                    	<features-list v-for="value in physicalProps"
+							v-bind:item="value">
+						</features-list>
+            		</div>
+				</div>`,
+	data () {
+		return {
+			chipAndMemory: [
+				{feature: "Nominal frequency: 1365 MHz"},
+				{feature: "Boost frequency: 1785 MHz"},
+				{feature: "Memory type: GDDR6"},
+				{feature: "Memory Speed: 14000 MHz"}
+			],
+			interface: [
+				{feature: "Bus Standard: PCI Express 3.0"},
+				{feature: "Connectors: 1xDP, 1xDVI, 2хHDMI"},
+				{feature: "Maximum Display Support: 4"},
+				{feature: "Digital Max Resolution: 7680x4320"}
+			],
+			physicalProps: [
+				{feature: "Recommended PSU: 500 W"},
+				{feature: "Power connectors: 8 pin"},
+				{feature: "Dimensions: 242 x 130 x 53 mm"},
+				{feature:"Number of fans: 2"}
+			]
+		}
+	}
+});
 
 let app = new Vue({
 	el: '#app',
@@ -28,15 +75,6 @@ let app = new Vue({
 		classObject: {
 			blue: false
 		},
-		classObjectChip: {
-			increasedprops: false
-		},
-		classObjectInterface: {
-			increasedprops: false
-		},
-		classObjectPhysicalPr: {
-			increasedprops: false
-		},
 		classObjectReview: {
 			blue: false
 		},
@@ -44,24 +82,6 @@ let app = new Vue({
 			"Chip manufacturer: nVidia",
 			"Memory Interface: 192-bit",
 			"Built-in memory: 6 Gb"
-		],
-		chipAndMemory: [
-			{feature: "Nominal frequency: 1365 MHz"},
-			{feature: "Boost frequency: 1785 MHz"},
-			{feature: "Memory type: GDDR6"},
-			{feature: "Memory Speed: 14000 MHz"}
-		],
-		interface: [
-			{feature: "Bus Standard: PCI Express 3.0"},
-			{feature: "Connectors: 1xDP, 1xDVI, 2хHDMI"},
-			{feature: "Maximum Display Support: 4"},
-			{feature: "Digital Max Resolution: 7680x4320"}
-		],
-		physicalProps: [
-			{feature: "Recommended PSU: 500 W"},
-			{feature: "Power connectors: 8 pin"},
-			{feature: "Dimensions: 242 x 130 x 53 mm"},
-			{feature:"Number of fans: 2"}
 		],
 		rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
 		visible: false,

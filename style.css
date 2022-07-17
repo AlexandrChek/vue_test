@@ -162,31 +162,20 @@ body {
 	font-size: 14px;
 }
 
-.chip-and-memory {
+.other-features {
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	width: 950px;
+	justify-content: center;
 	position: absolute;
-	left: 640px;
-	top: 390px;
-	width: 250px;
+	left: 680px;
+	top: 400px;
 }
 
-.interface {
-	position: absolute;
-	left: 900px;
-	top: 390px;
-	width: 270px;
-}
-
-.physical-props {
-	position: absolute;
-	left: 1200px;
-	top: 390px;
-	width: 250px;
-}
-
-.increasedprops {
+.features:hover {
 	z-index: 5;
 	width: 330px;
-	height: 150px;
+	height: 215px;
 	font-size: 27px;
 	font-weight: bold;
 	outline: 3px solid green;

@@ -57,33 +57,7 @@
                     {{value}}
                 </li>
             </ul>
-            <div class="chip-and-memory"
-                v-bind:class="classObjectChip"
-                v-on:mouseover="onMouseoverChip"
-                v-on:mouseout="onMouseoutChip">
-                <h4 class="center">Chip and memory</h4>
-                <ul>
-                    <other-features v-for="value in chipAndMemory" v-bind:item="value"></other-features>
-                </ul>
-            </div>
-            <div class="interface"
-                v-bind:class="classObjectInterface"
-                v-on:mouseover="onMouseoverInterface"
-                v-on:mouseout="onMouseoutInterface">
-                <h4 class="center">Interface</h4>
-                <ul>
-                    <other-features v-for="value in interface" v-bind:item="value"></other-features>
-                </ul>
-            </div>
-            <div class="physical-props"
-                v-bind:class="classObjectPhysicalPr"
-                v-on:mouseover="onMouseoverPhysicalPr"
-                v-on:mouseout="onMouseoutPhysicalPr">
-                <h4 class="center">Physical properties</h4>
-                <ul>
-                    <other-features v-for="value in physicalProps" v-bind:item="value"></other-features>
-                </ul>
-            </div>
+            <other-features></other-features>
         </div>
         <div class="basket">
             <div id="total-sum">{{total}} $</div>
