@@ -1,8 +1,42 @@
+Vue.component('rating', {
+	template: `<div class="rating">
+					<div>
+						<img v-bind:src="like" alt="Like" id="click-like" v-on:click="counter">
+						<p id="sum-likes">{{sumLikes}}</p>
+					</div>
+					<p id="week-prod" v-if="weekProduct">Product of the week !!!</p>
+					<p id="month-prod" v-else-if="monthProduct">Product of the month !!!</p>
+			   </div>`,
+	data () {
+		return {
+			like: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/like.jpg",
+			sumLikes: 0,
+			weekProduct: false,
+			monthProduct: false,
+		}
+	},
+	methods: {
+		counter: function (event) {
+			if (event) {
+				this.sumLikes += 1;
+			}
+			if (this.sumLikes >= 5 && this.sumLikes < 10) {
+				this.weekProduct = true;
+			} else {
+				this.weekProduct = false;
+			}
+			if (this.sumLikes >= 10) {
+				this.monthProduct = true;
+			}
+		}
+	}
+});
+
 Vue.component('features-list', {
 	props: ['item'],
 	template: `<ul>
 					<li class="size-14">{{item.feature}}</li>
-				</ul>`
+			   </ul>`
 });
 
 Vue.component('other-features', {
@@ -62,10 +96,6 @@ let app = new Vue({
 		total: 0,
 		link: "https://www.asus.com/ru/Motherboards-Components/Graphics-Cards/Dual/DUAL-RTX2070-8G-EVO/",
 		selected: "",
-		like: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/like.jpg",
-		sumLikes: 0,
-		weekProduct: false,
-		monthProduct: false,
 		addOffers: [
 			{offer: "Cabel PowerPlant HDMI 2m", price: 12},
 			{offer: "Cooler ASUS STRIX XF120", price: 25},
@@ -138,49 +168,6 @@ let app = new Vue({
 		offFocus: function (event) {
 			if (event) {
 				this.classObject.blue = false;
-			}
-		},
-		counter: function (event) {
-			if (event) {
-				this.sumLikes += 1;
-			}
-			if (this.sumLikes >= 5 && this.sumLikes < 10) {
-				this.weekProduct = true;
-			} else {
-				this.weekProduct = false;
-			}
-			if (this.sumLikes >= 10) {
-				this.monthProduct = true;
-			}
-		},
-		onMouseoverChip: function (event) {
-			if(event) {
-				this.classObjectChip.increasedprops = true;
-			}
-		},
-		onMouseoutChip: function (event) {
-			if (event) {
-				this.classObjectChip.increasedprops = false;
-			}
-		},
-		onMouseoverInterface: function (event) {
-			if(event) {
-				this.classObjectInterface.increasedprops = true;
-			}
-		},
-		onMouseoutInterface: function (event) {
-			if (event) {
-				this.classObjectInterface.increasedprops = false;
-			}
-		},
-		onMouseoverPhysicalPr: function (event) {
-			if(event) {
-				this.classObjectPhysicalPr.increasedprops = true;
-			}
-		},
-		onMouseoutPhysicalPr: function (event) {
-			if (event) {
-				this.classObjectPhysicalPr.increasedprops = false;
 			}
 		},
 		promo: function (event) {

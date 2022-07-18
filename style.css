@@ -104,8 +104,7 @@ body {
 	outline: 3px solid deepskyblue;
 }
 
-.likes {
-	width: 80px;
+.rating {
 	position: absolute;
 	top: 135px;
 	left: 1010px;
@@ -130,10 +129,9 @@ body {
 	font-family: algerian;
 	height: 20px;
 	margin: 3px;
-	width: 450px;
+	width: 410px;
 	position: absolute;
-	left: 680px;
-	top: 200px;
+	right: 1px;
 }
 
 #main-features {
@@ -153,30 +151,25 @@ body {
 	font-size: 18px;
 }
 
-.center {
-	text-align: center;
-	margin: 0px;
-}
-
-.size-14 {
-	font-size: 14px;
-}
-
 .other-features {
 	display: -webkit-inline-flex;
 	display: inline-flex;
 	width: 950px;
+	font-size: 16px;
 	justify-content: center;
 	position: absolute;
 	left: 680px;
 	top: 400px;
 }
 
+.center {
+	text-align: center;
+}
+
 .features:hover {
 	z-index: 5;
 	width: 330px;
-	height: 215px;
-	font-size: 27px;
+	font-size: 18px;
 	font-weight: bold;
 	outline: 3px solid green;
 	background-color: #f0ffee;

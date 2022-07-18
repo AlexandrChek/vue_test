@@ -31,12 +31,7 @@
                 </form>
                 <p id="rating">Rating is: {{selected}}</p>
             </div>
-            <div class="likes">
-                <img v-bind:src="like" alt="Like" id="click-like" v-on:click="counter">
-                <p id="sum-likes">{{sumLikes}}</p>
-            </div>
-            <p id="week-prod" v-if="weekProduct">Product of the week !!!</p>
-            <p id="month-prod" v-else-if="monthProduct">Product of the month !!!</p>
+            <rating></rating>
             <div class="price">{{product.price}} $</div>
             <img id="buy-but-big" v-bind:src="buyButton" alt="Buy" v-on:click="buy">
             <div class="add-offers">
