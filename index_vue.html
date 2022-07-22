@@ -10,54 +10,26 @@
     <div id='app'>
         <div class="product">
             <div class="product-image">
-                <img id="photo" v-bind:src="image" v-bind:alt="altText">
+                <img id="photo" v-bind:src="image" alt="V-card RTX2060">
             </div>
             <div class="product-info">
                 <h1>{{product.name}}</h1>
                 <p>{{description}}</p>
             </div>
-            <div class="other-products">
-                <a v-bind:href="link">More products like this</a>
+            <div class="buying">
+                <p class="price">{{product.price}} $</p>   
+                <buying v-on:buy="addToBasket"></buying>
             </div>
-            <div id="evaluation">
-                <p id="label">Rate the product </p>
-                <form action="#">
-                    <select v-model="selected" v-bind:class="classObject" v-on:focus="onFocus" v-on:blur="offFocus">
-                        <option disabled>-Rate-</option>
-                        <option>Very good</option>
-                        <option>Good</option>
-                        <option>Bad</option>
-                    </select>
-                </form>
-                <p id="grade">Grade is: {{selected}}</p>
-            </div>
+            <grade></grade>
             <rating></rating>
-            <div class="price">{{product.price}} $</div>
-            <img id="buy-but-big" v-bind:src="buyButton" alt="Buy" v-on:click="buy">
-            <div class="add-offers">
-                <p> Together with the product you can buy the next goods/servises with the special prices:</p>
-                <table class="tab-add-offers">
-                    <tr v-for="value in addOffers">
-                        <td class="cell-1">{{value.offer}}</td>
-                        <td class="cell-2">{{value.price}}$</td>
-                        <td class="cell-2">
-                            <button class="buy-but" v-on:click="addBuy(value)">Buy</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <h2 id="main-features">Main features</h2>
-            <ul id="list">
-                <li v-for="value in mainFeatures">
-                    {{value}}
-                </li>
-            </ul>
+            <add-offers v-on:add-buy="addToBasket"></add-offers>
+            <main-features></main-features>
             <other-features></other-features>
         </div>
         <div class="basket">
             <div id="total-sum">{{total}} $</div>
             <img v-bind:src="basketImg" alt="Basket">
-        </div>
+       </div>
         <div class="promo">
             <p>
                 Make an order & click 
@@ -67,6 +39,9 @@
             <p id="code" v-if="visible">
                 Code: {{promocode}}. &nbsp &nbsp Discount: {{discount}} %
             </p>
+        </div>
+        <div class="other-products">
+            <a v-bind:href="link">More products like this</a>
         </div>
         <div class="reviews">
             <h3 id="reviews-label">Reviews:</h3>

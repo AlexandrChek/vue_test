@@ -25,35 +25,36 @@ body {
 
 .product-info {
 	margin-top: 10px;
-	width: 50%;
-	height: 60px;
+	width: 25vw;
 	position: absolute;
 	left: 680px;
 }
 
+.buying {
+	position: absolute;
+	left: 1200px;
+	top: 20px;
+}
+
 .price {
+	text-align: center;
 	font-size: 35px;
 	font-weight: bold;
 	color: green;
-	width: 100px;
-	position: absolute;
-	left: 1170px;
-	top: 30px;
+	margin-bottom: 5px;
+	margin-top: 10px;
 }
 
 #buy-but-big {
 	width: 150px;
 	height: 70px;
-	position: absolute;
-	left: 1145px;
-	top: 80px;
 }
 
 .add-offers {
 	width: 480px;
 	position: absolute;
 	left: 1110px;
-	top: 200px;
+	top: 230px;
 	font-weight: bold;
 }
 
@@ -79,6 +80,8 @@ body {
 .other-products {
 	margin-left: 40px;
 	width: 50%;
+	position:absolute;
+	top: 640px;
 }
 
 #evaluation {
@@ -130,24 +133,23 @@ body {
 	height: 20px;
 	margin: 3px;
 	width: 410px;
+	position: relative;
+	right: 330px;
+}
+
+.main-features {
 	position: absolute;
-	right: 1px;
+	top: 230px;
+	left: 657px;
+	width: 260px;
 }
 
 #main-features {
-	margin: 0px;
-	position: absolute;
-	top: 235px;
-	left: 680px;
-	width: 300px;
+	margin: 14px;
+	text-align: center;
 }
 
-#list {
-	position: absolute;
-	left: 680px;
-	top: 255px;
-	padding: 0px;
-	width: 300px;
+.m-features-list {
 	font-size: 18px;
 }
 
