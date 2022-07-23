@@ -181,9 +181,9 @@ body {
 
 .promo {
 	position: absolute;
-	left: 1600px;
+	right: 1px;
 	top: 190px;
-	width: 300px;
+	width: 325px;
 }
 
 #code {

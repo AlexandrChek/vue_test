@@ -1,3 +1,61 @@
+let eventBus = new Vue();
+
+Vue.component('promo', {
+	template: `<div class="promo">
+					<p>
+						Make an order & click right button
+						<img id="right-button" v-bind:src="rightButton" alt="right-button" v-on:contextmenu.prevent="promo">
+		 				to have a promocode for purchases in the stores of our partners.
+					</p>
+					<p id="code" v-if="visible">
+						Code: {{promocode}}. &nbsp &nbsp &nbsp Discount: {{discount}} %
+					</p>
+				</div>`,
+	data () {
+		return {
+			rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
+			addOffers: [],
+			visible: false,
+			promocode: "",
+		}
+	},
+	mounted () {
+		eventBus.$on ('giveAddOffers', (offersArr) => {
+			this.addOffers = offersArr;
+		})
+	},
+	methods: {
+		promo: function (event) {
+			if (event) {
+				if (app.total === 0) {
+					alert('Make an order first, please!');
+				} else {
+					this.visible = true;
+				}
+			}
+		}
+	},
+	computed: {
+		discount: function () {
+			let d = 0;
+			if (app.total === app.product.price) {
+				d = 1;
+				this.promocode = "22ABC01";
+			} else if (app.total === app.product.price + this.addOffers[0].price) {
+				d = 2;
+				this.promocode = "22ABC02";
+			} else if (app.total === app.product.price + this.addOffers[0].price + this.addOffers[1].price) {
+				d = 3;
+				this.promocode = "22ABC03";
+			} else if (app.total > app.product.price + this.addOffers[0].price + this.addOffers[1].price) {
+				d = 4;
+				this.promocode = "22ABC04";
+			}
+			return d;
+		}
+	}
+});
+
 Vue.component('buying', {
 	template: `<img id="buy-but-big" v-bind:src="buyButton" alt="Buy" v-on:click="buy">`,
 	data () {
@@ -40,6 +98,8 @@ Vue.component('add-offers', {
 	methods: {
 		addBuy: function (value) {
 			this.$emit('add-buy', value);
+			let offersArr = this.addOffers;
+			eventBus.$emit('giveAddOffers', offersArr);
 		}
 	}
 });
@@ -225,15 +285,6 @@ let app = new Vue({
 				t += this.basket[i].price;
 			}
 			this.total = t;
-		},
-		promo: function (event) {
-			if (event) {
-				if (this.total === 0) {
-					alert('Make an order first, please!');
-				} else {
-					this.visible = true;
-				}
-			}
 		},
 		onFocusReview: function (event) {
 			if (event) {

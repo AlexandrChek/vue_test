@@ -29,17 +29,8 @@
         <div class="basket">
             <div id="total-sum">{{total}} $</div>
             <img v-bind:src="basketImg" alt="Basket">
-       </div>
-        <div class="promo">
-            <p>
-                Make an order & click 
-                <img id="right-button" v-bind:src="rightButton" alt="right-button" v-on:contextmenu.prevent="promo">
-                 to have a promocode for purchases in the stores of our partners.
-            </p>
-            <p id="code" v-if="visible">
-                Code: {{promocode}}. &nbsp &nbsp Discount: {{discount}} %
-            </p>
         </div>
+        <promo></promo>
         <div class="other-products">
             <a v-bind:href="link">More products like this</a>
         </div>
