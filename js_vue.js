@@ -1,5 +1,131 @@
 let eventBus = new Vue();
 
+Vue.component('animation', {
+	template: `<div class="animation">
+					<img id="space" v-bind:src="space" alt="Space">
+					<p class="planet">
+						<img id="planet" v-bind:src="planet" alt="Planet">
+					</p>
+					<p id="ad">This could be your ad!</p>
+				</div>`,
+	data () {
+		return {
+			space: 'space.jpg',
+			planet: 'planet.jpg'
+		}
+	}
+});
+
+Vue.component('reviews-form', {
+	template: `<form>
+					<p>
+						<input type="text" placeholder="Erter your name"
+							v-model="currentName"
+							v-bind:class="classObjectName"
+							v-on:focus="onFocusName"
+							v-on:blur="offFocusName">
+					</p>
+					<p>
+						<textarea id="review" placeholder="Enter your review"
+							v-model="currentReview"
+							v-bind:class="classObjectReview"
+							v-on:focus="onFocusReview"
+							v-on:blur="offFocusReview"
+							v-on:keyup="activeBut">
+						</textarea>
+					</p>
+					<p>
+						<button id="send-but"
+							v-bind:disabled="buttonState"
+							v-on:click.prevent="send">
+								Send
+						</button>
+					<p/>
+				</form>`,
+	data () {
+		return {
+			currentName: "",
+			currentReview: "",
+			buttonState: true,
+			classObjectName: {
+				blue: false
+			},
+			classObjectReview: {
+				blue: false
+			},
+		}
+	},
+	methods: {
+		onFocusName: function (event) {
+			if (event) {
+				this.classObjectName.blue = true;
+			}
+		},
+		offFocusName: function (event) {
+			if (event) {
+				this.classObjectName.blue = false;
+			}
+		},
+		onFocusReview: function (event) {
+			if (event) {
+				this.classObjectReview.blue = true;
+			}
+		},
+		offFocusReview: function (event) {
+			if (event) {
+				this.classObjectReview.blue = false;
+			}
+		},
+		activeBut: function (event) {
+			if (event) {
+				this.buttonState = false;
+			}
+		},
+		send: function (event) {
+			if (event) {
+				if (this.currentName === "") {
+					alert('Enter you name first, please!');
+				}
+				else {
+					let reviewObj = {
+						name: this.currentName,
+						review: this.currentReview
+					};
+					eventBus.$emit('transferReview', reviewObj);
+					this.currentName = "";
+					this.currentReview = "";
+				}
+			}
+		}
+	}
+});
+
+Vue.component('reviews-list', {
+	template: `<ul id="reviews-list">
+					<li v-for="value in reviews">
+						<span id="name">{{value.name | capitalize}}: </span>{{value.review | capitalize}}
+					</li>
+			   </ul>`,
+	data () {
+		return {
+			reviews: []
+		}
+	},
+	mounted () {
+		eventBus.$on('transferReview', (reviewObj) => {
+			this.reviews.push(reviewObj);
+		})
+	},
+	filters: {
+		capitalize: function (value) {
+			if (!value) {
+				return '';
+			}
+			return value[0].toUpperCase() + value.slice(1);
+		}
+	}
+});
+
 Vue.component('promo', {
 	template: `<div class="promo">
 					<p>
@@ -20,7 +146,7 @@ Vue.component('promo', {
 		}
 	},
 	mounted () {
-		eventBus.$on ('giveAddOffers', (offersArr) => {
+		eventBus.$on ('transferAddOffers', (offersArr) => {
 			this.addOffers = offersArr;
 		})
 	},
@@ -99,7 +225,7 @@ Vue.component('add-offers', {
 		addBuy: function (value) {
 			this.$emit('add-buy', value);
 			let offersArr = this.addOffers;
-			eventBus.$emit('giveAddOffers', offersArr);
+			eventBus.$emit('transferAddOffers', offersArr);
 		}
 	}
 });
@@ -247,35 +373,7 @@ let app = new Vue({
 		basket: [],
 		total: 0,
 		basketImg: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/basket.png",
-		link: "https://www.asus.com/ru/Motherboards-Components/Graphics-Cards/Dual/DUAL-RTX2070-8G-EVO/",
-		classObjectReview: {
-			blue: false
-		},
-		rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
-		visible: false,
-		promocode: "",
-		reviews: [],
-		currentReview: "",
-		buttonState: true
-	},
-	computed: {
-		discount: function () {
-			let d = 0;
-			if (this.total === this.product.price) {
-				d = 1;
-				this.promocode = "22ABC01";
-			} else if (this.total === this.product.price + this.addOffers[0].price) {
-				d = 2;
-				this.promocode = "22ABC02";
-			} else if (this.total === this.product.price + this.addOffers[0].price + this.addOffers[1].price) {
-				d = 3;
-				this.promocode = "22ABC03";
-			} else if (this.total > this.product.price + this.addOffers[0].price + this.addOffers[1].price) {
-				d = 4;
-				this.promocode = "22ABC04";
-			}
-			return d;
-		}
+		link: "https://www.asus.com/ru/Motherboards-Components/Graphics-Cards/Dual/DUAL-RTX2070-8G-EVO/"
 	},
 	methods: {
 		addToBasket: function (value) {
@@ -285,35 +383,6 @@ let app = new Vue({
 				t += this.basket[i].price;
 			}
 			this.total = t;
-		},
-		onFocusReview: function (event) {
-			if (event) {
-				this.classObjectReview.blue = true;
-			}
-		},
-		offFocusReview: function (event) {
-			if (event) {
-				this.classObjectReview.blue = false;
-			}
-		},
-		activeBut: function (event) {
-			if (event) {
-				this.buttonState = false;
-			}
-		},
-		send: function (event) {
-			if (event) {
-				this.reviews.push(this.currentReview);
-				this.currentReview = "";
-			}
-		}
-	},
-	filters: {
-		capitalize: function (value) {
-			if (!value) {
-				return '';
-			}
-			return value[0].toUpperCase() + value.slice(1);
 		}
 	}
 });

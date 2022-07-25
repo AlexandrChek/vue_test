@@ -36,26 +36,10 @@
         </div>
         <div class="reviews">
             <h3 id="reviews-label">Reviews:</h3>
-            <form>
-                <textarea id="review" placeholder="Enter your review"
-                    v-model="currentReview"
-                    v-bind:class="classObjectReview"
-                    v-on:focus="onFocusReview"
-                    v-on:blur="offFocusReview"
-                    v-on:keyup="activeBut">
-                </textarea>
-                <button id="send-but"
-                    v-bind:disabled="buttonState"
-                    v-on:click.prevent="send">
-                        Send
-                </button>
-            </form>
-            <ul id="reviews-list">
-                <li v-for="value in reviews">
-                    {{value | capitalize}}
-                </li>
-            </ul>
+            <reviews-form></reviews-form>
+            <reviews-list></reviews-list>
         </div>
+        <animation></animation>
     </div>
     <script src="js_vue.js"></script>
 </body>

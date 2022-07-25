@@ -181,7 +181,7 @@ body {
 
 .promo {
 	position: absolute;
-	right: 1px;
+	left: 1570px;
 	top: 190px;
 	width: 325px;
 }
@@ -226,13 +226,54 @@ body {
 
 #reviews-list {
 	margin: 9px;
-	position: absolute;
-	top: 140px;
 	padding-left: 15px;
 }
 
-#send-but {
-	position: relative;
-	top: 25px;
-	left: -300px;
+#name {
+	color:darkgreen;
+	font-weight: bold;
+}
+
+.animation {
+	position: absolute;
+	left: 1320px;
+	top: 600px;
+}
+
+.planet {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 30%;
+}
+
+#planet {
+	position: absolute;
+	left: 23px;
+	top: 5px;
+	border-radius: 100%;
+	width: 25px;
+	animation: rotation 10s linear infinite;
+	transform-origin: 230% 230% 0;
+}
+
+#ad {
+	color: white;
+	position: absolute;
+	top: 0px;
+	left: 30%;
+	font-size: 25px;
+	font-weight: bold;
+	animation: falling 5s linear infinite;
+}
+
+@keyframes rotation {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+
+@keyframes falling {
+	0% {transform: translate(0, 0);}
+	85% {transform: translate(0, 130%);}
+	100% {transform: rotate(30deg);}
 }
