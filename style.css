@@ -262,6 +262,7 @@ body {
 	position: absolute;
 	top: 0px;
 	left: 30%;
+	height: 42%;
 	font-size: 25px;
 	font-weight: bold;
 	animation: falling 5s linear infinite;
