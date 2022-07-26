@@ -10,8 +10,8 @@ Vue.component('animation', {
 				</div>`,
 	data () {
 		return {
-			space: "https://github.com/AlexandrChek/vue_test/blob/master/space.jpg",
-			planet: "https://github.com/AlexandrChek/vue_test/blob/master/planet.jpg"
+			space: "space.jpg",
+			planet: "planet.jpg"
 		}
 	}
 });
