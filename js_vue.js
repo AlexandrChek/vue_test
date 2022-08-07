@@ -146,21 +146,17 @@ Vue.component('promo', {
 	data () {
 		return {
 			rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
-			addOffers: [],
 			visible: false,
 			promocode: "",
 		}
-	},
-	mounted () {
-		eventBus.$on ('transferAddOffers', (offersArr) => {
-			this.addOffers = offersArr;
-		})
 	},
 	methods: {
 		promo: function (event) {
 			if (event) {
 				if (app.total === 0) {
 					alert('Make an order first, please!');
+				} else if (app.total < app.product.price) {
+					alert('Order the main product ferst, please!');
 				} else {
 					this.visible = true;
 				}
@@ -173,13 +169,13 @@ Vue.component('promo', {
 			if (app.total === app.product.price) {
 				d = 1;
 				this.promocode = "22ABC01";
-			} else if (app.total === app.product.price + this.addOffers[0].price) {
+			} else if (app.total > app.product.price && app.total < (app.product.price * 2) && app.basket.length === 2) {
 				d = 2;
 				this.promocode = "22ABC02";
-			} else if (app.total === app.product.price + this.addOffers[0].price + this.addOffers[1].price) {
+			} else if (app.total > app.product.price && app.total < (app.product.price * 2) && app.basket.length === 3) {
 				d = 3;
 				this.promocode = "22ABC03";
-			} else if (app.total > app.product.price + this.addOffers[0].price + this.addOffers[1].price) {
+			} else if ((app.total > app.product.price && app.basket.length === 4) || app.total >= (app.product.price * 2)) {
 				d = 4;
 				this.promocode = "22ABC04";
 			}
@@ -225,8 +221,6 @@ Vue.component('add-offers', {
 	methods: {
 		addBuy: function (value) {
 			this.$emit('add-buy', value);
-			let offersArr = this.addOffers;
-			eventBus.$emit('transferAddOffers', offersArr);
 		}
 	}
 });
