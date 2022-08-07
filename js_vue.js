@@ -6,12 +6,16 @@ Vue.component('animation', {
 					<p class="planet">
 						<img id="planet" v-bind:src="planet" alt="Planet">
 					</p>
+					<p class="star">
+						<img id="star" v-bind:src="star" alt="Star">
+					</p>
 					<p id="ad">This could be your ad!</p>
 				</div>`,
 	data () {
 		return {
 			space: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/space.jpg",
-			planet: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/planet.jpg"
+			planet: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/planet.jpg",
+			star: "star.jpg"
 		}
 	}
 });
@@ -133,9 +137,11 @@ Vue.component('promo', {
 						<img id="right-button" v-bind:src="rightButton" alt="right-button" v-on:contextmenu.prevent="promo">
 		 				to have a promocode for purchases in the stores of our partners.
 					</p>
-					<p id="code" v-if="visible">
-						Code: {{promocode}}. &nbsp &nbsp &nbsp Discount: {{discount}} %
-					</p>
+					<transition name="appearance">
+						<p id="code" v-if="visible">
+							Code: {{promocode}}. &nbsp &nbsp &nbsp Discount: {{discount}} %
+						</p>
+					</transition>
 				</div>`,
 	data () {
 		return {
@@ -183,12 +189,7 @@ Vue.component('promo', {
 });
 
 Vue.component('buying', {
-	template: `<img id="buy-but-big" v-bind:src="buyButton" alt="Buy" v-on:click="buy">`,
-	data () {
-		return {
-			buyButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/buy_button_big.jpg"
-		}
-	},
+	template: `<button id="buy-but-big" v-on:click="buy">BUY</button>`,
 	methods: {
 		buy: function (event) {
 			let value = app.product;
