@@ -15,7 +15,7 @@ Vue.component('animation', {
 		return {
 			space: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/space.jpg",
 			planet: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/planet.jpg",
-			star: "star.jpg"
+			star: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/star.jpg"
 		}
 	}
 });
@@ -134,7 +134,7 @@ Vue.component('promo', {
 	template: `<div class="promo">
 					<p>
 						Make an order & click right button
-						<img id="right-button" v-bind:src="rightButton" alt="right-button" v-on:contextmenu.prevent="promo">
+						<a href="#" id="promo-switch" v-on:click="promo">HERE</a>
 		 				to have a promocode for purchases in the stores of our partners.
 					</p>
 					<transition name="appearance">
@@ -145,7 +145,6 @@ Vue.component('promo', {
 				</div>`,
 	data () {
 		return {
-			rightButton: "https://raw.githubusercontent.com/AlexandrChek/vue_test/master/right_button.webp",
 			visible: false,
 			promocode: "",
 		}

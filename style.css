@@ -95,7 +95,7 @@ body {
 .other-products {
 	margin-left: 40px;
 	width: 50%;
-	position:absolute;
+	position: absolute;
 	top: 640px;
 }
 
@@ -198,8 +198,14 @@ body {
 .promo {
 	position: absolute;
 	left: 1570px;
-	top: 190px;
+	top: 225px;
 	width: 325px;
+}
+
+#promo-switch {
+	color: green;
+	font-size: 19px;
+	font-weight: bold;
 }
 
 #code {
